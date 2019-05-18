@@ -1,0 +1,22 @@
+<mat-card class="login-card">
+    <mat-card-header>
+        <mat-card-title>
+            Login form
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" method="post" novalidate class="mat-input-container">
+            <mat-form-field>
+                <mat-placeholder>Введіть логін користувача.</mat-placeholder>
+                <input matInput #username="ngModel" [(ngModel)]="loginModel.username" name="username" required />
+                <mat-error *ngIf="username.hasError('requiered')">Введіть логін користувача.</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Введіть пароль." [(ngModel)]="loginModel.password" name="password" [type]="hide ? 'password' : 'text'">
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            </mat-form-field>
+            <button mat-raised-button color="primary" [disabled]="loading">Увійти.</button>
+
+        </form>
+    </mat-card-content>
+</mat-card>
